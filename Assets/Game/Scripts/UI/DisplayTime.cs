@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class DisplayTime : MonoBehaviour
 {
-    //[SerializeField] private VoidEventChannelSO playerStartedGame;
-    
     public TextMeshProUGUI timeText;
+    [SerializeField] private int wholeSecondSize = 60;
+    [SerializeField] private int decimalSecondSize = 30;
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class DisplayTime : MonoBehaviour
         int wholeSeconds = Mathf.FloorToInt(currentTime);
         int decimalSeconds = Mathf.FloorToInt((currentTime - wholeSeconds) * 100);
 
-        timeText.text = $"<size=60>{wholeSeconds}</size><size=30>.{decimalSeconds}</size>";
+        timeText.text = $"<size={wholeSecondSize.ToString()}>{wholeSeconds}</size><size={decimalSecondSize.ToString()}>.{decimalSeconds}</size>";
     }
 }
 

@@ -6,29 +6,28 @@ public class GameOverUIManager : MonoBehaviour
 
     private void Start()
     {
-        EnableAllChildren(false);
+        EnableAllChildrenRecursive(transform, false);
         levelCompleted.RegisterListener(DisablePlayer);
-        levelCompleted.RegisterListener(() => EnableAllChildren(true));
+        levelCompleted.RegisterListener(() => EnableAllChildrenRecursive(transform, true));
     }
 
-    private void EnableAllChildren(bool value)
+    private void EnableAllChildrenRecursive(Transform parent, bool value)
     {
-        foreach (Transform child in transform)
+        foreach (Transform child in parent)
         {
-            child.gameObject.SetActive(value);
+            EnableAllChildrenRecursive(child, value);
+            if(child.gameObject!=null) child.gameObject.SetActive(value);
         }
     }
-    
+
     private void DisablePlayer()
     {
         GameObject.FindGameObjectWithTag("Player").SetActive(false);
     }
-    
+
     private void OnDisable()
     {
         levelCompleted.UnregisterListener(DisablePlayer);
-        levelCompleted.UnregisterListener(() => EnableAllChildren(true));
+        levelCompleted.UnregisterListener(() => EnableAllChildrenRecursive(transform, true));
     }
-    
-    
 }

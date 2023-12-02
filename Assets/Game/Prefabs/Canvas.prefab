@@ -78,7 +78,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -824,6 +824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelCompleted: {fileID: 11400000, guid: bfa3e65acc4de084990e814e4b74f37f, type: 2}
+  gameOverUIParent: {fileID: 0}
 --- !u!1 &5233110985877019613
 GameObject:
   m_ObjectHideFlags: 0
