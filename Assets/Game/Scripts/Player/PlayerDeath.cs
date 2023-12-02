@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO playerDeath;
+    [SerializeField] private VoidEventChannelSO levelCompleted;
     [SerializeField] private ParticleSystem particleSystem;
 
     private void Start()
     {
         playerDeath.RegisterListener(PlayerDie);
+        levelCompleted.RegisterListener(DisablePlayer);
     }
     
     private void PlayerDie()
@@ -44,11 +46,6 @@ public class PlayerDeath : MonoBehaviour
         }
     }
     
-    private void OnDisable()
-    {
-        playerDeath.UnregisterListener(PlayerDie);
-    }
-
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Obstacle"))
@@ -56,4 +53,16 @@ public class PlayerDeath : MonoBehaviour
             PlayerDie();
         }
     }
+
+    private void DisablePlayer()
+    {
+        gameObject.SetActive(false);
+    }
+    
+    private void OnDisable()
+    {
+        levelCompleted.UnregisterListener(DisablePlayer);
+        playerDeath.UnregisterListener(PlayerDie);
+    }
+    
 }
