@@ -20,7 +20,7 @@ public class PlayerDeath : MonoBehaviour
         PlayDeathParticles();
     }
 
-    private void ReLoadCurrentScene()
+    private void ReLoadCurrentScene() 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

@@ -1312,7 +1312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6585adb5f85664582a47b7e74b1799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayTime: {fileID: 791117737}
+  displayCurrentTime: {fileID: 791117737}
 --- !u!114 &705965768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,8 +1688,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 130
-  m_fontSizeBase: 130
+  m_fontSize: 89
+  m_fontSizeBase: 89
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1751,8 +1751,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 791117735}
-  wholeSecondSize: 130
-  decimalSecondSize: 79
+  levelCompleted: {fileID: 11400000, guid: bfa3e65acc4de084990e814e4b74f37f, type: 2}
+  wholeSecondSize: 89
+  decimalSecondSize: 59
 --- !u!1 &816647310
 GameObject:
   m_ObjectHideFlags: 0
