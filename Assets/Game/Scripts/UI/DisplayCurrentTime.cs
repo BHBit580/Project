@@ -1,11 +1,20 @@
+using System;
 using TMPro;
 using UnityEngine;
 
-public class DisplayTime : MonoBehaviour
+public class DisplayCurrentTime : MonoBehaviour
 {
-    public TextMeshProUGUI timeText;
+    [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private VoidEventChannelSO levelCompleted;
     [SerializeField] private int wholeSecondSize = 60;
     [SerializeField] private int decimalSecondSize = 30;
+
+    private void Awake() => levelCompleted.RegisterListener(DisableCurrentTimeText);
+
+    public TextMeshProUGUI GetCurrentTimeText()
+    {
+        return timeText;
+    }
 
     private void Start()
     {
@@ -25,5 +34,13 @@ public class DisplayTime : MonoBehaviour
 
         timeText.text = $"<size={wholeSecondSize.ToString()}>{wholeSeconds}</size><size={decimalSecondSize.ToString()}>.{decimalSeconds}</size>";
     }
+
+    private void DisableCurrentTimeText()
+    {
+        gameObject.SetActive(false);
+    }
+    
+    private void OnDisable() => levelCompleted.UnregisterListener(DisableCurrentTimeText);
+    
 }
 
