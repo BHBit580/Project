@@ -10,7 +10,6 @@ public class PlayerDeath : MonoBehaviour
 
     private void Start()
     {
-        playerDeath.RegisterListener(PlayerDie);
         levelCompleted.RegisterListener(DisablePlayer);
     }
     
@@ -36,6 +35,7 @@ public class PlayerDeath : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Obstacle"))
         {
+            playerDeath.RaiseEvent();
             PlayerDie();
         }
     }
@@ -48,7 +48,6 @@ public class PlayerDeath : MonoBehaviour
     private void OnDisable()
     {
         levelCompleted.UnregisterListener(DisablePlayer);
-        playerDeath.UnregisterListener(PlayerDie);
     }
     
 }

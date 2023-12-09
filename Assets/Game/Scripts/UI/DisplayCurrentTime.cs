@@ -27,7 +27,7 @@ public class DisplayCurrentTime : MonoBehaviour
     private void Start()
     {
         timeText = GetComponent<TextMeshProUGUI>();
-        timeText.text = null;
+        timeText.text = FancyTimeFormat("0", "00");
     }
 
     private void StartTheCounting() => _startCounting = true;
@@ -42,13 +42,17 @@ public class DisplayCurrentTime : MonoBehaviour
         float currentTime = Time.timeSinceLevelLoad;
         int wholeSeconds = Mathf.FloorToInt(currentTime);
         int decimalSeconds = Mathf.FloorToInt((currentTime - wholeSeconds) * 100);
-
-        timeText.text = $"<size={wholeSecondSize.ToString()}>{wholeSeconds}</size><size={decimalSecondSize.ToString()}>.{decimalSeconds}</size>";
+        timeText.text = FancyTimeFormat(wholeSeconds.ToString(), decimalSeconds.ToString());
     }
 
     private void DisableCurrentTimeText()
     {
         gameObject.SetActive(false);
+    }
+
+    private string FancyTimeFormat(string wholeSeconds, string decimalSeconds)
+    {
+        return $"<size={wholeSecondSize.ToString()}>{wholeSeconds}</size><size={decimalSecondSize.ToString()}>.{decimalSeconds}</size>";
     }
 
     private void OnDisable()
