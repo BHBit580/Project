@@ -9,6 +9,7 @@ namespace Game.Scripts.Player
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private float speedMultiplier = 650;
+        [SerializeField] private AudioClip tapSound;
         [SerializeField] private float maxVelocity = 5;
 
         private Rigidbody2D _playerRigidbody;
@@ -28,6 +29,7 @@ namespace Game.Scripts.Player
         {
             if (value.Get<float>() > 0.5f)
             {
+                SoundManager.instance.PlayEffectSoundOneShot(tapSound);
                 _isForceApplied = true;
             }
         }

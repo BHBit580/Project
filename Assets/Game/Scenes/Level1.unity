@@ -2711,7 +2711,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8226728, guid: e85f4a610ef9e5b4aa9cedce76136489, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -3770,6 +3771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1562788700}
   - component: {fileID: 1562788699}
+  - component: {fileID: 1562788701}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -3808,6 +3810,19 @@ Transform:
   - {fileID: 2093556039}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1562788701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562788698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8891fe0acc0abc341bb3c5e3cf5126f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spaceMusic: {fileID: 8300000, guid: a7f8f307007027d48b73dfb3ae057e9f, type: 3}
 --- !u!4 &1568291340 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 476082, guid: e6e6f5beacfc73b41883f0becc4e2a67, type: 3}
@@ -4424,7 +4439,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8226728, guid: e85f4a610ef9e5b4aa9cedce76136489, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -5181,6 +5197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplier: 300
+  tapSound: {fileID: 8300000, guid: 7fb954e1c1961644d85f884b946f53b0, type: 3}
   maxVelocity: 5
 --- !u!1 &2123753825
 GameObject:
@@ -5283,6 +5300,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 241038913661452932, guid: 0ebb2756e16633249b87f2a6ecdd5100, type: 3}
+    - {fileID: 8922640389873494981, guid: 0ebb2756e16633249b87f2a6ecdd5100, type: 3}
+    - {fileID: 8891831323244404461, guid: 0ebb2756e16633249b87f2a6ecdd5100, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
