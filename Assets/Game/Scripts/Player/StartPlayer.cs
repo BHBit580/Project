@@ -6,8 +6,7 @@ public class StartPlayer : MonoBehaviour
     [SerializeField] private GameObject particleSystem;
     [SerializeField] private GameObject collider;
     [SerializeField] private VoidEventChannelSO startTheGame;
-    
-    
+
     private PlayerInputs _playerInputs;
 
     private void Awake() => _playerInputs = new PlayerInputs();

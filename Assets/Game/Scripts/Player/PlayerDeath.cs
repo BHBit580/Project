@@ -7,6 +7,8 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private VoidEventChannelSO playerDeath;
     [SerializeField] private VoidEventChannelSO levelCompleted;
     [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private AudioClip[] deathSound;
+    [SerializeField] private float backGroundMusicFadeTime = 0.8f;
 
     private void Start()
     {
@@ -37,6 +39,16 @@ public class PlayerDeath : MonoBehaviour
         {
             playerDeath.RaiseEvent();
             PlayerDie();
+            SoundManager.instance.FadeOutMusic(backGroundMusicFadeTime);
+            PlayDeathMultipleSounds();
+        }
+    }
+
+    private void PlayDeathMultipleSounds()
+    {
+        foreach (var sound in deathSound)
+        {
+            SoundManager.instance.PlayEffectSoundOneShot(sound);
         }
     }
 

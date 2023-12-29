@@ -12,7 +12,6 @@ public class SoundManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -20,14 +19,16 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlayEffectSoundOneShot(AudioClip clip)
+    public void PlayEffectSoundOneShot(AudioClip clip , float volume = 1f)
     {
+        effectSource.volume = volume;
         effectSource.PlayOneShot(clip);
     }
 
     public void PlayMusicLoop(AudioClip clip, float volume = 1f)
     {
         musicSource.clip = clip;
+        musicSource.volume = volume;
         musicSource.Play();
         musicSource.loop = true;
     }
@@ -35,8 +36,54 @@ public class SoundManager : MonoBehaviour
     public void PlayEffectSoundLoop(AudioClip clip, float volume = 1f)
     {
         effectSource.clip = clip;
+        effectSource.volume = volume;
         effectSource.Play();
         effectSource.loop = true;
+    }
+    
+    public void FadeOutMusic(float fadeTime)
+    {
+        StartCoroutine(FadeOut(musicSource, fadeTime));
+    }
+
+    private IEnumerator FadeOut(AudioSource audioSource, float fadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+    }
+    
+    public void FadeInMusic(AudioClip clip , float fadeTime , float volume , bool loopCondition)
+    {
+        musicSource.clip = clip;
+        musicSource.volume = volume; 
+        StartCoroutine(FadeIn(musicSource, fadeTime));
+        musicSource.loop = true;
+    }
+    
+    private IEnumerator FadeIn(AudioSource audioSource, float fadeTime)
+    {
+        float startVolume = 0.2f;
+ 
+        audioSource.volume = 0;
+        audioSource.Play();
+ 
+        while (audioSource.volume < 1.0f)
+        {
+            audioSource.volume += startVolume * Time.deltaTime / fadeTime;
+ 
+            yield return null;
+        }
+ 
+        audioSource.volume = 1f;
     }
     
     public void StopMusic()
@@ -50,4 +97,6 @@ public class SoundManager : MonoBehaviour
         effectSource.Stop();
         effectSource.loop = false;
     }
+    
+    
 }

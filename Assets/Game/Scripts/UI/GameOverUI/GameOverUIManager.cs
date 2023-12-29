@@ -1,11 +1,12 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class GameOverUIManager : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO levelCompleted;
-
+    [SerializeField] private float time = 0.5f;
+    [SerializeField] private Vector2 finalPosVector;
     private bool isDestroyed = false;
-
     private void Start()
     {
         EnableAllChildrenRecursive(transform, false);
@@ -18,6 +19,7 @@ public class GameOverUIManager : MonoBehaviour
 
     private void EnableAllChildrenRecursive(Transform parent, bool value)
     {
+        this.GetComponent<RectTransform>().DOAnchorPos(finalPosVector, time);
         for (int i = 0; i < parent.childCount; i++)
         {
             Transform child = parent.GetChild(i);
@@ -25,7 +27,7 @@ public class GameOverUIManager : MonoBehaviour
             if (child.gameObject != null) child.gameObject.SetActive(value);
         }
     }
-
+ 
     private void OnDisable()
     {
         // Unregister the callback function when the script is disabled
