@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 public class LevelSelector : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private float time = 0.5f;
     [SerializeField] private RectTransform playButton;
     [SerializeField]private Vector2 finalPosVector = new Vector2(-10 , -880);
+
+    public int selectedLevelNumber;
     private float initialAlpha;
     private Button selectedButton;
 
@@ -49,5 +52,6 @@ public class LevelSelector : MonoBehaviour
         playButton.DOAnchorPos(finalPosVector, time);
         // Update the selected button
         selectedButton = clickedButton;
+        selectedLevelNumber = System.Array.IndexOf(levelButtons, clickedButton) + 1;
     }
 }
