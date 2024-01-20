@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerFinalScore : MonoBehaviour
 {
@@ -10,6 +9,7 @@ public class PlayerFinalScore : MonoBehaviour
     private void Start()
     {
         _currentScore = GetComponent<TextMeshProUGUI>();
-        _currentScore.text = displayCurrentTime.GetCurrentTimeText().text + "s";
+        string currentTimeText = displayCurrentTime.GetCurrentTimeText().text;
+        _currentScore.text = currentTimeText + "<size=45%>s</size>";
     }
 }

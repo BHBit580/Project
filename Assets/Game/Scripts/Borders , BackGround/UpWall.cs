@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class UpWall : MonoBehaviour
@@ -47,7 +48,6 @@ public class UpWall : MonoBehaviour
         {
             SoundManager.instance.FadeOutMusic(fadeBackgroundMusicTime);
             Invoke(nameof(InvokeLevelCompletedUI), uiDisplayDelay);
-            Debug.Log("LevelCompleted");
         }
     }
 }
