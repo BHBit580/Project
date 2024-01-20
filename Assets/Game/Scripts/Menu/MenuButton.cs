@@ -41,6 +41,7 @@ public class MenuButton : MonoBehaviour
     IEnumerator LoadLevel(int levelIndex)
     {
         transitionAnimator.SetTrigger("Start");
+        SoundManager.instance.FadeOutMusic(transitionTime);
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(levelIndex);
     }

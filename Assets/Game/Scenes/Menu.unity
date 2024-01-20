@@ -245,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 50433432}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -373,7 +373,7 @@ Transform:
   m_GameObject: {fileID: 73012373}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -995,6 +995,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842f1a3d374e7834599bf48eb3debd1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingAudioClip: {fileID: 8300000, guid: dd733d90eb35e07468c9c4bdb1f17380, type: 3}
+  fadeTime: 0.5
+  volume: 1
 --- !u!114 &511579559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1176,7 +1179,7 @@ MonoBehaviour:
   gameTitle: {fileID: 123493341}
   finalGamePosVector: {x: 0.5, y: 170}
   finalPosVector: {x: -10, y: -580}
-  finalPosButtonVector: {x: -10, y: -880}
+  finalPosButtonVector: {x: -10, y: -1000}
   levelSelectorScript: {fileID: 1465468214}
   transitionAnimator: {fileID: 1784463315}
   transitionTime: 1

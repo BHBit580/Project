@@ -61,7 +61,7 @@ public class SoundManager : MonoBehaviour
         audioSource.volume = startVolume;
     }
     
-    public void FadeInMusic(AudioClip clip , float fadeTime , float volume , bool loopCondition)
+    public void FadeInMusic(AudioClip clip , float fadeTime , float volume, bool loopCondition)
     {
         musicSource.clip = clip;
         musicSource.volume = volume; 
