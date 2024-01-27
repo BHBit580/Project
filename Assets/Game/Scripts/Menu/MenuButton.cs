@@ -1,50 +1,45 @@
 using System;
 using System.Collections;
+using System.IO;
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
-    [SerializeField] private RectTransform levelSelector;
-    [SerializeField] private RectTransform gameTitle;
-    [SerializeField] private Vector2 finalGamePosVector;
-    [SerializeField] private Vector2 finalPosVector = new Vector2(-10 , -580);
-    [SerializeField] private Vector2 finalPosButtonVector;
-    [SerializeField] private LevelSelector levelSelectorScript;
     [SerializeField] private Animator transitionAnimator;
     [SerializeField] private float transitionTime = 1f;
-    [SerializeField] private float time = 0.25f;
-    
-    private bool isLevelSelectionOpen = false;
-
-    private void Start()
-    {
-        isLevelSelectionOpen = false;
-    }
 
     public void OnClickMenuButton()
     {
-        if (isLevelSelectionOpen == false)
-        {
-            gameTitle.DOAnchorPos(finalGamePosVector, time);
-            levelSelector.DOAnchorPos(finalPosVector, time);
-            GetComponent<RectTransform>().DOAnchorPos(finalPosButtonVector, time);
-            isLevelSelectionOpen = true;
-        }
-        else
-        {
-            StartCoroutine(LoadLevel(levelSelectorScript.selectedLevelNumber));
-        }
+        StartCoroutine(LoadNextLevel());
     }
-    
-    IEnumerator LoadLevel(int levelIndex)
+
+    IEnumerator LoadNextLevel()
     {
+        int levelIndex = FindLevelIndex();
+
         transitionAnimator.SetTrigger("Start");
         SoundManager.instance.FadeOutMusic(transitionTime);
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(levelIndex);
     }
-    
-    
+
+    private int FindLevelIndex()
+    {
+        string filePath = Path.Combine(Application.dataPath, "LastPlayedLevel.json");
+        int nextLevelToLoadIndex;
+
+        if (File.Exists(filePath))
+        {
+            string dataAsJson = File.ReadAllText(filePath); 
+            GameData loadedData = JsonUtility.FromJson<GameData>(dataAsJson);
+            nextLevelToLoadIndex = loadedData.lastPlayedLevel + 1;
+        }
+        else
+        {
+            nextLevelToLoadIndex = 1;
+        }
+        
+        return nextLevelToLoadIndex;
+    }
 }

@@ -1,5 +1,7 @@
+using System.IO;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class GameOverUIManager : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class GameOverUIManager : MonoBehaviour
         {
             if (!isDestroyed) EnableAllChildrenRecursive(transform, true);
         });
+        levelCompleted.RegisterListener(SaveCurrentLevelData);
     }
 
     private void EnableAllChildrenRecursive(Transform parent, bool value)
@@ -35,8 +38,19 @@ public class GameOverUIManager : MonoBehaviour
         {
             if (!isDestroyed) EnableAllChildrenRecursive(transform, true);
         });
+        levelCompleted.UnregisterListener(SaveCurrentLevelData);
     }
 
+    private void SaveCurrentLevelData()
+    {
+        GameData gameData = new GameData();
+        gameData.lastPlayedLevel = SceneManager.GetActiveScene().buildIndex;
+
+        string dataAsJson = JsonUtility.ToJson(gameData , true);
+        
+        File.WriteAllText(Application.dataPath + "/LastPlayedLevel.json", dataAsJson);
+    }
+    
     private void OnDestroy()
     {
         // Set the flag to true when the object is being destroyed
