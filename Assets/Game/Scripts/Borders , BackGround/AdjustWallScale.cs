@@ -8,9 +8,16 @@ using UnityEngine;
 public class AdjustWallScale : MonoBehaviour
 {
     [SerializeField] private Transform leftBorder , rightBorder;
-    [SerializeField] private OrbElement orbElement;
     [SerializeField] private VoidEventChannelSO collectOrbLevelPopUpUI;
     [SerializeField] private float multiplier = 1f;
+
+    private OrbElement orbElement;
+    private void Start()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        orbElement = player.GetComponent<OrbElement>();
+    }
+
     private void Update()
     {
         float distance = Vector3.Distance(leftBorder.position , rightBorder.position);

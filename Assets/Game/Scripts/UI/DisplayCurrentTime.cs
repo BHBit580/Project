@@ -6,6 +6,7 @@ using UnityEngine;
 public class DisplayCurrentTime : MonoBehaviour
 { 
     [SerializeField] private VoidEventChannelSO startTheGame;
+    [SerializeField] private VoidEventChannelSO playerDeath;
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private VoidEventChannelSO levelCompleted;
     [SerializeField] private int wholeSecondSize = 60;
@@ -17,6 +18,7 @@ public class DisplayCurrentTime : MonoBehaviour
     {
         startTheGame.RegisterListener(StartTheCounting);
         levelCompleted.RegisterListener(DisableCurrentTimeText);
+        playerDeath.RegisterListener(StopTheCounting);
     }
 
     public TextMeshProUGUI GetCurrentTimeText()
@@ -31,6 +33,7 @@ public class DisplayCurrentTime : MonoBehaviour
     }
 
     private void StartTheCounting() => _startCounting = true;
+    private void StopTheCounting() => _startCounting = false;
     
     private void Update()
     {
@@ -58,6 +61,7 @@ public class DisplayCurrentTime : MonoBehaviour
     private void OnDisable()
     {
         startTheGame.UnregisterListener(StartTheCounting);
+        playerDeath.UnregisterListener(StopTheCounting); 
         levelCompleted.UnregisterListener(DisableCurrentTimeText);   
     }
 

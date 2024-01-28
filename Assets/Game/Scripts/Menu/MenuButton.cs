@@ -34,6 +34,11 @@ public class MenuButton : MonoBehaviour
             string dataAsJson = File.ReadAllText(filePath); 
             GameData loadedData = JsonUtility.FromJson<GameData>(dataAsJson);
             nextLevelToLoadIndex = loadedData.lastPlayedLevel + 1;
+            
+            if (nextLevelToLoadIndex >= SceneManager.sceneCountInBuildSettings)
+            {
+                nextLevelToLoadIndex = 1;
+            }
         }
         else
         {
