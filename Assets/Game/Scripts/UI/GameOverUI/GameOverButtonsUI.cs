@@ -1,25 +1,24 @@
-using System.Collections;
+using EasyTransition;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameOverButtonsUI : MonoBehaviour
 {
-    [SerializeField] private Animator transitionAnimator;
+    [SerializeField] private TransitionSettings transitionSettings;
     [SerializeField] private float transitionTime = 1f;
+    
     public void OnClickRestartButton()
     { 
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+        LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
     
     public void OnClickNextLevelButton()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
     
-    IEnumerator LoadLevel(int levelIndex)
+    private void LoadLevel(int levelIndex)
     {
-        transitionAnimator.SetTrigger("Start");
-        yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelIndex);
+        TransitionManager.Instance().Transition(levelIndex , transitionSettings , transitionTime);
     }
 }

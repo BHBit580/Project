@@ -1,29 +1,20 @@
-using System;
-using System.Collections;
 using System.IO;
+using EasyTransition;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
-    [SerializeField] private Animator transitionAnimator;
+    [SerializeField] private TransitionSettings transitionSettings;
     [SerializeField] private float transitionTime = 1f;
 
     public void OnClickMenuButton()
     {
-        StartCoroutine(LoadNextLevel());
-    }
-
-    IEnumerator LoadNextLevel()
-    {
-        int levelIndex = FindLevelIndex();
-
-        transitionAnimator.SetTrigger("Start");
+        int nextLevelToLoadIndex = FindLevelIndex();
         SoundManager.instance.FadeOutMusic(transitionTime);
-        yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelIndex);
+        TransitionManager.Instance().Transition(nextLevelToLoadIndex , transitionSettings , transitionTime);
     }
-
+    
     private int FindLevelIndex()
     {
         string filePath = Path.Combine(Application.dataPath, "LastPlayedLevel.json");
