@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -23,10 +20,10 @@ public class AdjustWallScale : MonoBehaviour
         float distance = Vector3.Distance(leftBorder.position , rightBorder.position);
         transform.localScale = new Vector3(distance , transform.localScale.y , transform.localScale.z) * multiplier;
     }
-
-
+    
     private void OnCollisionEnter2D(Collision2D col)
     {
+        if(this.gameObject.CompareTag("Ground")) return;    // This code present in both ground and upWall
         if (col.gameObject.CompareTag("Player") && orbElement.nofOfOrbs > 0)
         {
             collectOrbLevelPopUpUI.RaiseEvent();

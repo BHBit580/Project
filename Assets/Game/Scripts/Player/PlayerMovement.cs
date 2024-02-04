@@ -13,7 +13,6 @@ namespace Game.Scripts.Player
         [SerializeField] private float maxVelocity = 5;
 
         private Rigidbody2D _playerRigidbody;
-
         private float _upwardForce = 2f;
         private Vector2 _movementVector;
         private bool _isForceApplied;

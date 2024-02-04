@@ -3,7 +3,6 @@ using UnityEngine;
 public class StartPlayer : MonoBehaviour
 {
     [SerializeField] private GameObject particleSystem;
-    [SerializeField] private GameObject collider;
     [SerializeField] private VoidEventChannelSO startTheGame;
 
     private PlayerInputs _playerInputs;
@@ -12,9 +11,12 @@ public class StartPlayer : MonoBehaviour
     private void OnEnable() => _playerInputs.Enable();
     private void OnDisable() => _playerInputs.Disable();
 
+    private Rigidbody2D playerRigidbody2D;
     private void Start()
     {
         RegisterPlayerInputs();
+        playerRigidbody2D = GetComponent<Rigidbody2D>();
+        playerRigidbody2D.bodyType = RigidbodyType2D.Static;
     }
 
     private void RegisterPlayerInputs()
@@ -24,9 +26,9 @@ public class StartPlayer : MonoBehaviour
     
     private void StartTheGame()
     {
+        playerRigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         particleSystem.SetActive(false);
-        collider.SetActive(false);
         startTheGame.RaiseEvent();
-        gameObject.SetActive(false);
+        gameObject.GetComponent<StartPlayer>().enabled = false;
     }
 }

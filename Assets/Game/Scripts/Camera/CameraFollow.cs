@@ -1,15 +1,12 @@
 using FirstGearGames.SmoothCameraShaker;
 using UnityEngine;
 
-
+[ExecuteInEditMode]
 public class CameraFollow : MonoBehaviour {
 
     [SerializeField] private VoidEventChannelSO playerDeath;
     [SerializeField] private ShakeData myShakeSoData;
     [SerializeField] private float smoothTime = 0.125f;
-    [SerializeField] private GameObject upWall;
-    [SerializeField] private GameObject groundWall;
-    
     [SerializeField] private float groundWallOffset;
     [SerializeField] private float upWallOffset;
 
@@ -18,10 +15,14 @@ public class CameraFollow : MonoBehaviour {
     private Vector3 _velocity;
     private float _cameraPosX;
     private Transform target;
+    private GameObject upWall;
+    private GameObject groundWall;
 
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        groundWall = GameObject.FindGameObjectWithTag("Ground");
+        upWall = GameObject.FindGameObjectWithTag("UpWall");
         _cameraPosX = transform.position.x;
         playerDeath.RegisterListener(ShakeCamera);
     }
