@@ -9,7 +9,6 @@ public class VoidEventChannelSO : ScriptableObject
     {
         LoadingRequestEventHandler?.Invoke();
     }
-
     public void RegisterListener(System.Action listener)
     {
         LoadingRequestEventHandler += listener;

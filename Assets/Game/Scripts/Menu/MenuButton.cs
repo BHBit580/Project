@@ -11,7 +11,6 @@ public class MenuButton : MonoBehaviour
     public void OnClickMenuButton()
     {
         int nextLevelToLoadIndex = FindLevelIndex();
-        SoundManager.instance.FadeOutMusic(transitionTime);
         TransitionManager.Instance().Transition(nextLevelToLoadIndex , transitionSettings , transitionTime);
     }
     
