@@ -27,12 +27,12 @@ public class MenuButton : MonoBehaviour
             
             if (nextLevelToLoadIndex >= SceneManager.sceneCountInBuildSettings)
             {
-                nextLevelToLoadIndex = 1;
+                nextLevelToLoadIndex = 2;
             }
         }
         else
         {
-            nextLevelToLoadIndex = 1;
+            nextLevelToLoadIndex = 2;
         }
         
         return nextLevelToLoadIndex;

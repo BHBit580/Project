@@ -12,6 +12,7 @@ TagManager:
   - LeftBorder
   - RightBorder
   - UpWall
+  - Camera
   layers:
   - Default
   - TransparentFX
