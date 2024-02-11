@@ -131,22 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2290377929536186757, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2700137358483688425, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3673512401767916328, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5213508361912564214, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5682077671397696745, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -227,17 +211,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6151941457716542802, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8262830578359936562, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 8905837070818626886, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -362,6 +338,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1138070010}
   - {fileID: 1483972318}
   - {fileID: 1485322961}
+  - {fileID: 1138070010}

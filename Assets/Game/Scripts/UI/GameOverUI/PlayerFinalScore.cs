@@ -6,7 +6,7 @@ public class PlayerFinalScore : MonoBehaviour
     [SerializeField] private DisplayCurrentTime displayCurrentTime; 
     private TextMeshProUGUI _currentScore;
     
-    private void Start()
+    private void OnEnable()
     {
         _currentScore = GetComponent<TextMeshProUGUI>();
         string currentTimeText = displayCurrentTime.GetCurrentTimeText().text;
