@@ -31,12 +31,19 @@ public class CameraFollow : MonoBehaviour {
     {
         Vector3 targetPosition = target.position + _offset;
 
-        float min = groundWall.transform.position.y + groundWallOffset;
-        float max = upWall.transform.position.y + upWallOffset;
+        // Calculate the lower and upper bounds of the camera in world coordinates
+        float cameraHeight = 2f * Camera.main.orthographicSize;
+        float desiredLowerYPos = groundWall.transform.position.y + groundWallOffset + cameraHeight / 2f;
+        float desiredUpperYPos = upWall.transform.position.y - upWallOffset - cameraHeight / 2f;
+
+        // Adjust the minimum and maximum y-position of the camera
+        float min = desiredLowerYPos;
+        float max = desiredUpperYPos;
         float yPos = Mathf.Clamp(Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, smoothTime).y, min , max);
-        
+    
         transform.position = new Vector3(_cameraPosX, yPos , transform.position.z);
     }
+
 
     private void ShakeCamera()
     {
