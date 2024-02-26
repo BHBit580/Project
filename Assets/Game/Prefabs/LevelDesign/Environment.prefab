@@ -429,10 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be02b52e29a09a7489fdf173d671b6eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftBorder: {fileID: 6919025499968922415}
-  rightBorder: {fileID: 392484280359124121}
   collectOrbLevelPopUpUI: {fileID: 11400000, guid: 16888d7c73b07e948a148736c1eb5e49, type: 2}
-  multiplier: 1
 --- !u!1 &2352340959487923786
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,8 +848,8 @@ GameObject:
   - component: {fileID: 6479133643956516853}
   - component: {fileID: 6450709370046567645}
   - component: {fileID: 3099152715166342323}
-  - component: {fileID: 140330385071210338}
   - component: {fileID: 6472086210944139091}
+  - component: {fileID: 1361504311493164640}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -869,7 +866,7 @@ Transform:
   m_GameObject: {fileID: 5183744423627292640}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.48729855, y: -2.687398, z: -10.000343}
+  m_LocalPosition: {x: 0.48729855, y: -1.4575746, z: -10.000343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -910,7 +907,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.5
+  orthographic size: 6.8298235
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1044,25 +1041,8 @@ MonoBehaviour:
   playerDeath: {fileID: 11400000, guid: 22f99c8a2b9e0f9429a0328a78a4be2f, type: 2}
   myShakeSoData: {fileID: 11400000, guid: d92cba816fabb054291ebba81614d3e3, type: 2}
   smoothTime: 0.125
-  groundWallOffset: 5.28
-  upWallOffset: -5.03
---- !u!114 &140330385071210338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5183744423627292640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33e081fea65ba4143bc11ed367b51b29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wireColor: {r: 1, g: 1, b: 1, a: 1}
-  UnitsSize: 11
-  constraint: 1
-  camera: {fileID: 5760874117422223901}
-  executeInUpdate: 1
+  groundWallOffset: -0.32
+  upWallOffset: -0.32
 --- !u!114 &6472086210944139091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,6 +1057,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHitShakeData: {fileID: 11400000, guid: 30b570f864efd2d44b822bbb7e5a6590, type: 2}
   playerDeath: {fileID: 11400000, guid: 22f99c8a2b9e0f9429a0328a78a4be2f, type: 2}
+--- !u!114 &1361504311493164640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5183744423627292640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc2c08b79c97ab4aa03893e78d53e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWidth: 1080
+  pixelsToUnits: 175.7
 --- !u!1 &5417144742476018469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,7 +1788,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6919025499968922415}
   - component: {fileID: 9134073467270488573}
-  - component: {fileID: 6538646099163243160}
   - component: {fileID: 1138452725289907509}
   m_Layer: 0
   m_Name: LeftBorder
@@ -1870,21 +1863,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6538646099163243160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7976335195436250958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 303321a8901a98043b227d6185d49edc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  executeInUpdate: 1
-  anchorType: 3
-  anchorOffset: {x: 0.51, y: 0.18, z: 0}
 --- !u!61 &1138452725289907509
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2226,7 +2204,6 @@ GameObject:
   m_Component:
   - component: {fileID: 392484280359124121}
   - component: {fileID: 1111686044914394183}
-  - component: {fileID: 8545389657582483169}
   - component: {fileID: 6632201949282571474}
   m_Layer: 0
   m_Name: RightBorder
@@ -2302,21 +2279,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8545389657582483169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8722656049738301037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 303321a8901a98043b227d6185d49edc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  executeInUpdate: 1
-  anchorType: 5
-  anchorOffset: {x: -0.4, y: 0.19, z: 0}
 --- !u!61 &6632201949282571474
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2461,7 +2423,6 @@ MonoBehaviour:
   upWall: {fileID: 2233041304787371769}
   newUpWallWithSpace: {fileID: 5746348012596982184}
   lastLineExplosion: {fileID: 7331152293487042614}
-  fadeBackgroundMusicTime: 0.5
   levelCompletedSound:
   - {fileID: 8300000, guid: d582b233a0d458349a5eec66c824d264, type: 3}
 --- !u!1 &9037497235077768616
@@ -2475,9 +2436,7 @@ GameObject:
   - component: {fileID: 5576075760427445414}
   - component: {fileID: 8981481201742971976}
   - component: {fileID: 8545908566544628857}
-  - component: {fileID: 9092126884651625971}
   - component: {fileID: 252796721031792314}
-  - component: {fileID: 6236433553700987793}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Ground
@@ -2597,21 +2556,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 5.29}
   m_EdgeRadius: 0
---- !u!114 &9092126884651625971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9037497235077768616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 303321a8901a98043b227d6185d49edc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  executeInUpdate: 1
-  anchorType: 1
-  anchorOffset: {x: 0.04, y: 0.35, z: 0}
 --- !u!61 &252796721031792314
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2657,22 +2601,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6236433553700987793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9037497235077768616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be02b52e29a09a7489fdf173d671b6eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftBorder: {fileID: 6919025499968922415}
-  rightBorder: {fileID: 392484280359124121}
-  collectOrbLevelPopUpUI: {fileID: 11400000, guid: 16888d7c73b07e948a148736c1eb5e49, type: 2}
-  multiplier: 1
 --- !u!1001 &5986783050810264469
 PrefabInstance:
   m_ObjectHideFlags: 0
