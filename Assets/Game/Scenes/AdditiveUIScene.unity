@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 701301478672816151, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
+      propertyPath: backGround
+      value: 
+      objectReference: {fileID: 1138070011}
     - target: {fileID: 5682077671397696745, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -215,11 +219,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8674244680722640391, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
+      propertyPath: transitionSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: b0126e1e0c6c2a04895d564bd230dfb9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
+--- !u!1 &1138070011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2700137358483688425, guid: e3fe35913d68e9646a7f50efdc589d95, type: 3}
+  m_PrefabInstance: {fileID: 1138070010}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1483972318
 PrefabInstance:
   m_ObjectHideFlags: 0

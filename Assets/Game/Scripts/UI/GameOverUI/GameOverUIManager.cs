@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameOverUIManager : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO levelCompleted;
+    [SerializeField] private GameObject backGround;
     [SerializeField] private float time = 0.5f;
     [SerializeField] private Vector2 finalPosVector;
     private bool isDestroyed = false;
     private void Start()
     {
         EnableAllChildrenRecursive(transform, false);
+        backGround.SetActive(false);
         
         levelCompleted.RegisterListener(() =>
         {
@@ -22,6 +24,7 @@ public class GameOverUIManager : MonoBehaviour
 
     private void EnableAllChildrenRecursive(Transform parent, bool value)
     {
+        backGround.SetActive(true);
         this.GetComponent<RectTransform>().DOAnchorPos(finalPosVector, time);
         for (int i = 0; i < parent.childCount; i++)
         {

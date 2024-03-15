@@ -218,7 +218,6 @@ MonoBehaviour:
   particleSystem: {fileID: 198779045339133566, guid: cb9bf8f7ab7299344a48e3eb96d6a266, type: 3}
   deathSound:
   - {fileID: 8300000, guid: a550cb02580f00c40b4ba02aeff3acb4, type: 3}
-  backGroundMusicFadeTime: 1
 --- !u!114 &6346481951586176605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,7 +454,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 190526, guid: 6749a1da7a6538e4bae6c320db525d94, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 152150, guid: 6749a1da7a6538e4bae6c320db525d94, type: 3}
