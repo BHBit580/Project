@@ -17,9 +17,14 @@ namespace Game.Scripts.Player
         private Vector2 _movementVector;
         private bool _isForceApplied;
 
+        private float _screenWidth;
+        private Camera _mainCamera;
+
         private void Start()
         {
             _playerRigidbody = GetComponentInChildren<Rigidbody2D>();
+            _mainCamera = Camera.main;
+            _screenWidth = Camera.main.aspect * Camera.main.orthographicSize;
         }
 
         #region PlayerInputs
@@ -40,7 +45,11 @@ namespace Game.Scripts.Player
 
         #endregion
 
-        private void Update() => ConstrainUpwardVelocity();
+        private void Update()
+        {
+            ConstrainUpwardVelocity();
+            CheckWrapAround();
+        }
 
         private void FixedUpdate()
         {
@@ -53,7 +62,7 @@ namespace Game.Scripts.Player
 
         private void GetMovementVector(Vector2 touchPosition)
         {
-            Vector2 touchKiWorldPosition = Camera.main.ScreenToWorldPoint(touchPosition);
+            Vector2 touchKiWorldPosition = _mainCamera.ScreenToWorldPoint(touchPosition);
             _movementVector = new Vector2(touchKiWorldPosition.x - _playerRigidbody.position.x, _upwardForce);
             _movementVector.Normalize();
         }
@@ -67,9 +76,24 @@ namespace Game.Scripts.Player
             }
         }
 
+        private void CheckWrapAround()
+        {
+            Vector3 viewPos = _mainCamera.WorldToViewportPoint(transform.position);
+    
+            if (viewPos.x < 0 || viewPos.x > 1) // If player is out of the camera's viewport horizontally
+            {
+                // Determine the direction of crossing
+                float screenWidth = _mainCamera.aspect * _mainCamera.orthographicSize;
+                bool crossedLeftBoundary = viewPos.x < 0;
+        
+                // Calculate new position on the opposite side
+                float newX = crossedLeftBoundary ? screenWidth : -screenWidth;
+                
+                //add a little bit force 
+                float forceValX = crossedLeftBoundary ? 0.25f : -0.25f;
+                _playerRigidbody.AddForce(new Vector2(forceValX, 0), ForceMode2D.Impulse);
+                transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+            }
+        }
     }
 }
-
-
-
-
