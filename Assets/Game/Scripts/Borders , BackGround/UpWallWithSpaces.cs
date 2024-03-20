@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 [ExecuteInEditMode]
@@ -7,23 +8,23 @@ public class UpWallWithSpaces : MonoBehaviour
     [SerializeField] private float scaleXMultiplier = 1f; // Multiplier for the scale of the child objects
     [SerializeField] private float offset = 0.5f;
 
-    private Transform _leftBorder;
-    private Transform _rightBorder;
+    [SerializeField] private Transform leftBorder;
+    [SerializeField] private Transform rightBorder;
+    
     private Transform[] _childObjects;
     private Vector3 _leftBorderPosition, _rightBorderPosition;
 
     private void Start()
     {
         GetChildren();
-        GetBorderTransforms();
     }
 
     void Update()
     {
         _leftBorderPosition =
-            new Vector3(_leftBorder.position.x + offset, _leftBorder.position.y, _leftBorder.position.z);
+            new Vector3(leftBorder.position.x + offset, leftBorder.position.y, leftBorder.position.z);
         _rightBorderPosition =
-            new Vector3(_rightBorder.position.x - offset, _rightBorder.position.y, _rightBorder.position.z);
+            new Vector3(rightBorder.position.x - offset, rightBorder.position.y, rightBorder.position.z);
 
         float distanceBetweenObjects = Vector3.Distance(_leftBorderPosition, _rightBorderPosition) / (_childObjects.Length - 1);
 
@@ -58,11 +59,5 @@ public class UpWallWithSpaces : MonoBehaviour
         {
             _childObjects[i] = transform.GetChild(i);
         }
-    }
-
-    private void GetBorderTransforms()
-    {
-        _leftBorder = GameObject.FindGameObjectWithTag("LeftBorder").transform;
-        _rightBorder = GameObject.FindGameObjectWithTag("RightBorder").transform;
     }
 }

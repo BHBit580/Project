@@ -89,9 +89,6 @@ namespace Game.Scripts.Player
                 // Calculate new position on the opposite side
                 float newX = crossedLeftBoundary ? screenWidth : -screenWidth;
                 
-                //add a little bit force 
-                float forceValX = crossedLeftBoundary ? 0.25f : -0.25f;
-                _playerRigidbody.AddForce(new Vector2(forceValX, 0), ForceMode2D.Impulse);
                 transform.position = new Vector3(newX, transform.position.y, transform.position.z);
             }
         }
