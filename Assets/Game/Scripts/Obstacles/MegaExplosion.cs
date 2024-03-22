@@ -6,7 +6,6 @@ using UnityEngine;
 public class MegaExplosion : MonoBehaviour
 {
     [SerializeField] private ShakeData explosionShakeData;
-    [SerializeField] private VoidEventChannelSO playerDeath;
     [SerializeField] private float distanceToStartTrigger = 20f;
     [SerializeField] private float explosionRadius = 2.4f;
     [SerializeField] private float timeToExplode = 1.75f;
@@ -26,6 +25,7 @@ public class MegaExplosion : MonoBehaviour
         if (!_isPlaying && (transform.position - _playerTransform.position).magnitude <= distanceToStartTrigger)
         {
             _particleSystem.Play();
+            GetComponent<AudioSource>().Play();
             Invoke(nameof(PlayerShouldDie), timeToExplode);
             if (_particleSystem.isPlaying) 
             {
@@ -36,7 +36,6 @@ public class MegaExplosion : MonoBehaviour
         
         if (_isPlaying && _particleSystem.isStopped)
         {
-            Debug.Log("Stopped");
             _isPlaying = false;
             gameObject.SetActive(false);
         }
@@ -51,6 +50,6 @@ public class MegaExplosion : MonoBehaviour
     private void PlayerShouldDie()
     {
         if ((_playerTransform.position - transform.position).magnitude > explosionRadius) return;
-        playerDeath.RaiseEvent();
+        GameObject.FindWithTag("Player").GetComponent<PlayerDeath>().PlayerDie();
     }
 }

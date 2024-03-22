@@ -14,9 +14,11 @@ public class PlayerDeath : MonoBehaviour
         levelCompleted.RegisterListener(DisablePlayer);
     }
     
-    private void PlayerDie()
+    public void PlayerDie()
     {
+        playerDeath.RaiseEvent();
         PlayDeathParticles();
+        PlayDeathMultipleSounds();
         DisablePlayer();
     }
 
@@ -36,9 +38,7 @@ public class PlayerDeath : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Obstacle"))
         {
-            playerDeath.RaiseEvent();
             PlayerDie();
-            PlayDeathMultipleSounds();
         }
     }
 
