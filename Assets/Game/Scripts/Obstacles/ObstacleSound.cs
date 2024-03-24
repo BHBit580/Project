@@ -17,11 +17,10 @@ public class ObstacleSound : MonoBehaviour
 
     void Update()
     {
-        if (_player != null && _fireballAudio != null)
+        if (_player is not null && _fireballAudio is not null)
         {
             // Calculate the distance between the player and the fireball
             float distance = Vector3.Distance(_player.position, transform.position);
-            Debug.Log(distance);
 
             // Calculate the volume based on the distance
             float volume = Mathf.Lerp(maxVolume, 0, distance / maxDistance);

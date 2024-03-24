@@ -6,42 +6,33 @@ using UnityEngine.SceneManagement;
 public class GameOverUIManager : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO levelCompleted;
-    [SerializeField] private GameObject backGround;
-    [SerializeField] private float time = 0.5f;
-    [SerializeField] private Vector2 finalPosVector;
-    private bool isDestroyed = false;
+    [SerializeField] private GameObject backGroundUI;
+    [SerializeField] private GameObject lastLevelText;
+    [SerializeField] private GameObject uIElements;
+    [SerializeField] private GameObject borders;
+    
     private void Start()
     {
-        EnableAllChildrenRecursive(transform, false);
-        backGround.SetActive(false);
-        
-        levelCompleted.RegisterListener(() =>
-        {
-            if (!isDestroyed) EnableAllChildrenRecursive(transform, true);
-        });
+        backGroundUI.SetActive(false);
+        lastLevelText.SetActive(false);
+        uIElements.SetActive(false);
+        borders.SetActive(false);
         levelCompleted.RegisterListener(SaveCurrentLevelData);
+        levelCompleted.RegisterListener(EnableGameObjects);
     }
-
-    private void EnableAllChildrenRecursive(Transform parent, bool value)
+    
+    
+    private void EnableGameObjects()
     {
-        backGround.SetActive(true);
-        this.GetComponent<RectTransform>().DOAnchorPos(finalPosVector, time);
-        for (int i = 0; i < parent.childCount; i++)
+        borders.SetActive(true);
+        backGroundUI.SetActive(true);
+        if (SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCountInBuildSettings)
         {
-            Transform child = parent.GetChild(i);
-            EnableAllChildrenRecursive(child, value);
-            if (child.gameObject != null) child.gameObject.SetActive(value);
+            lastLevelText.SetActive(true);
+            return;
         }
-    }
- 
-    private void OnDisable()
-    {
-        // Unregister the callback function when the script is disabled
-        levelCompleted.UnregisterListener(() =>
-        {
-            if (!isDestroyed) EnableAllChildrenRecursive(transform, true);
-        });
-        levelCompleted.UnregisterListener(SaveCurrentLevelData);
+        
+        uIElements.SetActive(true);
     }
 
     private void SaveCurrentLevelData()
@@ -54,9 +45,11 @@ public class GameOverUIManager : MonoBehaviour
         File.WriteAllText(Application.dataPath + "/LastPlayedLevel.json", dataAsJson);
     }
     
+    
     private void OnDestroy()
     {
-        // Set the flag to true when the object is being destroyed
-        isDestroyed = true;
+        levelCompleted.UnregisterListener(SaveCurrentLevelData);
+        levelCompleted.UnregisterListener(EnableGameObjects);
     }
+    
 }
