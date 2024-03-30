@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   multiplyColorMaterial: {fileID: 2100000, guid: 53171468e32441749b007c64337cd3db, type: 2}
   addColorMaterial: {fileID: 2100000, guid: 65ccb7b6cbefce14eb6f884cfc33ba91, type: 2}
-  refrenceResolution: {x: 960, y: 540}
+  refrenceResolution: {x: 1080, y: 1920}
   blockRaycasts: 1
   colorTintMode: 0
   colorTint: {r: 1, g: 1, b: 1, a: 1}

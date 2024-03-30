@@ -659,7 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionSettings: {fileID: 11400000, guid: b0126e1e0c6c2a04895d564bd230dfb9, type: 2}
-  transitionTime: 1
+  transitionTime: 0
 --- !u!114 &903487259
 MonoBehaviour:
   m_ObjectHideFlags: 0
