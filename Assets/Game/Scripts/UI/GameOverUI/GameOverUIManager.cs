@@ -24,6 +24,7 @@ public class GameOverUIManager : MonoBehaviour
     
     private void EnableGameObjects()
     {
+        Debug.Log("EnabledGameOverUI");
         borders.SetActive(true);
         backGroundUI.SetActive(true);
         if (SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCountInBuildSettings)
@@ -37,12 +38,7 @@ public class GameOverUIManager : MonoBehaviour
 
     private void SaveCurrentLevelData()
     {
-        GameData gameData = new GameData();
-        gameData.lastPlayedLevel = SceneManager.GetActiveScene().buildIndex;
-
-        string dataAsJson = JsonUtility.ToJson(gameData , true);
-        
-        File.WriteAllText(Application.dataPath + "/LastPlayedLevel.json", dataAsJson);
+        PlayerPrefs.SetInt("LastPlayedLevel" , SceneManager.GetActiveScene().buildIndex);
     }
     
     

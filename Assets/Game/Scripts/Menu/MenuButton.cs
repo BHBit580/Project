@@ -1,12 +1,16 @@
+using System.Collections;
 using System.IO;
 using EasyTransition;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
     [SerializeField] private TransitionSettings transitionSettings;
     [SerializeField] private float transitionTime = 1f;
+    int nextLevelToLoadIndex;
+
 
     public void OnClickMenuButton()
     {
@@ -16,15 +20,11 @@ public class MenuButton : MonoBehaviour
     
     private int FindLevelIndex()
     {
-        string filePath = Path.Combine(Application.dataPath, "LastPlayedLevel.json");
-        int nextLevelToLoadIndex;
-
-        if (File.Exists(filePath))
+        if (PlayerPrefs.HasKey("LastPlayedLevel"))
         {
-            string dataAsJson = File.ReadAllText(filePath); 
-            GameData loadedData = JsonUtility.FromJson<GameData>(dataAsJson);
-            nextLevelToLoadIndex = loadedData.lastPlayedLevel + 1;
-            
+            int lastPlayedLevel = PlayerPrefs.GetInt("LastPlayedLevel");
+            nextLevelToLoadIndex = lastPlayedLevel + 1;
+
             if (nextLevelToLoadIndex >= SceneManager.sceneCountInBuildSettings)
             {
                 nextLevelToLoadIndex = 2;
@@ -32,9 +32,12 @@ public class MenuButton : MonoBehaviour
         }
         else
         {
+            PlayerPrefs.SetInt("LastPlayedLevel" , 2);
             nextLevelToLoadIndex = 2;
         }
-        
+
         return nextLevelToLoadIndex;
     }
+
+    
 }

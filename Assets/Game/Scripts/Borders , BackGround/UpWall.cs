@@ -8,11 +8,13 @@ public class UpWall : MonoBehaviour
     [SerializeField] private VoidEventChannelSO levelCompleted;
     [SerializeField] private float uiDisplayDelay = 1f;
     [SerializeField] private GameObject upWall;
+    [SerializeField] private GameObject levelCompleteUpWall;
     [SerializeField] private GameObject lastLineExplosion;
     [SerializeField] private AudioClip[] levelCompletedSound;
 
     private void Start()
     {
+        levelCompleteUpWall.SetActive(false);
         allOrbsCollected.RegisterListener(DisplayNewUpWall);
         lastLineExplosion.SetActive(false);
         upWall.SetActive(true);
@@ -20,6 +22,7 @@ public class UpWall : MonoBehaviour
 
     private void DisplayNewUpWall()
     {
+        levelCompleteUpWall.SetActive(true);
         foreach (var sound in levelCompletedSound)
         {
             SoundManager.instance.PlayEffectSoundOneShot(sound);
