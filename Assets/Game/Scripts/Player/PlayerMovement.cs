@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +12,8 @@ namespace Game.Scripts.Player
         [SerializeField] private float speedMultiplier = 650;
         [SerializeField] private AudioClip tapSound;
         [SerializeField] private float maxVelocity = 5;
-
+        [SerializeField] private float checkWrapAroundTime = 0.5f;
+        
         private Rigidbody2D _playerRigidbody;
         private float _upwardForce = 2f;
         private Vector2 _movementVector;
@@ -25,6 +27,7 @@ namespace Game.Scripts.Player
             _playerRigidbody = GetComponentInChildren<Rigidbody2D>();
             _mainCamera = Camera.main;
             _screenWidth = Camera.main.aspect * Camera.main.orthographicSize;
+            StartCoroutine(CheckWrapAround());
         }
 
         #region PlayerInputs
@@ -48,7 +51,6 @@ namespace Game.Scripts.Player
         private void Update()
         {
             ConstrainUpwardVelocity();
-            CheckWrapAround();
         }
 
         private void FixedUpdate()
@@ -76,20 +78,25 @@ namespace Game.Scripts.Player
             }
         }
 
-        private void CheckWrapAround()
+        IEnumerator CheckWrapAround()
         {
-            Vector3 viewPos = _mainCamera.WorldToViewportPoint(transform.position);
-    
-            if (viewPos.x < 0 || viewPos.x > 1) // If player is out of the camera's viewport horizontally
+            while (true)
             {
-                // Determine the direction of crossing
-                float screenWidth = _mainCamera.aspect * _mainCamera.orthographicSize;
-                bool crossedLeftBoundary = viewPos.x < 0;
-        
-                // Calculate new position on the opposite side
-                float newX = crossedLeftBoundary ? screenWidth : -screenWidth;
+                yield return new WaitForSeconds(checkWrapAroundTime);
                 
-                transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+                Vector3 viewPos = _mainCamera.WorldToViewportPoint(transform.position);
+
+                if (viewPos.x < 0 || viewPos.x > 1) // If player is out of the camera's viewport horizontally
+                {
+                    // Determine the direction of crossing
+                    float screenWidth = _mainCamera.aspect * _mainCamera.orthographicSize;
+                    bool crossedLeftBoundary = viewPos.x < 0;
+
+                    // Calculate new position on the opposite side
+                    float newX = crossedLeftBoundary ? screenWidth : -screenWidth;
+
+                    transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+                }
             }
         }
     }

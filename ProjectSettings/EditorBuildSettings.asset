@@ -12,18 +12,18 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/AdditiveUIScene.unity
     guid: a66645184d1920e4791553d30aa0ab20
   - enabled: 1
-    path: Assets/Game/Scenes/Level1.unity
+    path: Assets/Game/Scenes/Levels/Level1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Game/Scenes/Level2.unity
+    path: Assets/Game/Scenes/Levels/Level2.unity
     guid: e2dff4bc96546f845b384ca25dec8662
   - enabled: 1
-    path: Assets/Game/Scenes/Level3.unity
+    path: Assets/Game/Scenes/Levels/Level3.unity
     guid: 12dba5785c4e6c5428665c04b8ba9a21
   - enabled: 1
-    path: Assets/Game/Scenes/Level4.unity
+    path: Assets/Game/Scenes/Levels/Level4.unity
     guid: ba8092ce6fb39bf40a6a0ea38c0eed1a
   - enabled: 1
-    path: Assets/Game/Scenes/Level5.unity
+    path: Assets/Game/Scenes/Levels/Level5.unity
     guid: a091059fb80dd9b4fad2f7ad08356d98
   m_configObjects: {}
